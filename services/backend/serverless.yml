@@ -1,0 +1,23 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: eliunosquare
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: backend
+
+provider:
+  name: aws
+
+functions:
+  hello:
+    handler: src/functions/hello.handler
+    runtime: nodejs20.x
+  go-hello:
+    handler: bin/hello
+    runtime: go1.x
+    events:
+      - http:
+          path: hello-go
+          method: GET
+
+package:
+  patterns:
+    - bin/*

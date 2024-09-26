@@ -1,0 +1,17 @@
+Resources:
+  apiKeyTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: apiKeyTable-${sls:stage}
+      AttributeDefinitions:
+        - AttributeName: apiKey
+          AttributeType: S
+      KeySchema:
+        - AttributeName: apiKey
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1000
+        WriteCapacityUnits: 1000
+Outputs:
+  ApiKeyTableName:
+    Value: !Ref apiKeyTable

@@ -1,0 +1,22 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY .yarn ./.yarn
+COPY .yarnrc.yml package.json yarn.lock* ./
+# COPY ./services/web ./services/web
+COPY . .
+
+# RUN yarn --frozen-lock-file
+RUN yarn install --immutable
+
+RUN yarn workspace web build
+
+RUN ls
+
+EXPOSE 3000
+
+# COPY /app/services
+
+CMD node ./services/web/.next/standalone/services/web/server.js
+# CMD node ./services/web/.next/standalone/server.js

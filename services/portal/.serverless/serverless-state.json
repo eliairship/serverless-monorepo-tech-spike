@@ -1,0 +1,47 @@
+{
+  "service": {
+    "service": "portal",
+    "serviceObject": {
+      "name": "portal"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "stage": "dev",
+      "region": "us-east-1",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {},
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": "serverless-framework-deployments-us-east-1-760f9696-be60",
+            "Export": {
+              "Name": "sls-portal-dev-ServerlessDeploymentBucketName"
+            }
+          }
+        }
+      }
+    },
+    "pluginsData": {},
+    "functions": {},
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "initialServerlessConfig": {
+      "org": "eliunosquare",
+      "service": "portal",
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      }
+    },
+    "appId": null,
+    "org": "eliunosquare",
+    "orgId": null,
+    "layers": {}
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/portal/dev/1727187214579-2024-09-24T14:13:34.579Z",
+    "artifact": ""
+  }
+}

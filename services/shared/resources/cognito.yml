@@ -1,0 +1,93 @@
+Resources:
+  portalUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ${sls:stage}-portal-user-pool
+      AccountRecoverySetting:
+        RecoveryMechanisms:
+          - Name: verified_email
+            Priority: 1
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+      UsernameAttributes:
+        - email
+      AutoVerifiedAttributes:
+        - email
+      UsernameConfiguration:
+        CaseSensitive: false
+      Schema:
+        - AttributeDataType: String
+          Mutable: true
+          Name: account_id
+          StringAttributeConstraints:
+            MaxLength: "255"
+            MinLength: "1"
+        - AttributeDataType: String
+          Mutable: false
+          Name: threeScaleUserId
+          StringAttributeConstraints:
+            MaxLength: "255"
+            MinLength: "0"
+        - AttributeDataType: String
+          Mutable: false
+          Name: threeScaleUserName
+          StringAttributeConstraints:
+            MaxLength: "255"
+            MinLength: "0"
+        - AttributeDataType: String
+          Mutable: false
+          Name: threeScaleCreatedAt
+          StringAttributeConstraints:
+            MaxLength: "24"
+            MinLength: "0"
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+
+  portalUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: ${sls:stage}-portal-user-pool-client
+      UserPoolId:
+        Ref: portalUserPool
+      GenerateSecret: false
+      ReadAttributes:
+        - custom:account_id
+        - email
+        - email_verified
+      SupportedIdentityProviders:
+        - COGNITO
+  portalIdentityPool:
+    Type: AWS::Cognito::IdentityPool
+    Properties:
+      AllowUnauthenticatedIdentities: false
+      CognitoIdentityProviders:
+        - ClientId:
+            Ref: portalUserPoolClient
+          ProviderName:
+            Fn::GetAtt:
+              - portalUserPool
+              - ProviderName
+  
+  SuperAdminsGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: super-admins-group
+      UserPoolId:
+        Ref: portalUserPool
+
+  IPHoldersGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: ip-holders-group
+      UserPoolId:
+        Ref: portalUserPool
+
+Outputs:
+  UserPoolId:
+    Value: !Ref portalUserPool
+
+  UserPoolClientId:
+    Value: !Ref portalUserPoolClient
+
+  CognitoIdentityPool:
+    Value: !Ref portalIdentityPool

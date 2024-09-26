@@ -1,0 +1,35 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: eliunosquare
+
+stages:
+  default:
+    params:
+      domain: stage.${env:API_BIBLE_DOMAIN} # This is the value of the "domain" param in the dev stage
+  preview:
+    params:
+      domain: ${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN} # This is the value of the "domain" param in the dev stage
+  prod:
+    params:
+      # domain: "prod-api.acmeinc.com" # This is the value of the "domain" param in the prod stage
+
+services:
+  shared:
+    path: services/shared
+  backend:
+    path: services/backend
+    dependsOn:
+      - shared
+    params:
+      apiKeyTableName: ${shared.apiKeyTableName}
+  # web:
+  #   path: apps/web
+  #   dependsOn:
+  #     - shared
+  #   params:
+  #     apiKeyTableName: ${shared.apiKeyTableName}
+  # portal:
+  #   path: services/portal
+  #   dependsOn:
+  #     - shared
+  #   params:
+  #     apiKeyTableName: ${shared.apiKeyTableName}

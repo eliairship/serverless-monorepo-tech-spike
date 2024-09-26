@@ -15,6 +15,8 @@ node_modules
 # Testing
 coverage
 
+*.zip
+
 # Turbo
 .turbo
 
@@ -36,3 +38,7 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+.env
+
+bin

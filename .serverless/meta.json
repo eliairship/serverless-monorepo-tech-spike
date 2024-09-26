@@ -1,0 +1,1046 @@
+{
+  "/Users/eli.marshall/code/serverless-turborepo-spike": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": false,
+    "isCompose": true,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "stages": {
+              "default": {
+                "params": {
+                  "domain": "stage.eli.dev.api.bible"
+                }
+              },
+              "preview": {
+                "params": {
+                  "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+                }
+              },
+              "prod": {
+                "params": null
+              }
+            },
+            "services": {
+              "shared": {
+                "path": "services/shared",
+                "component": "serverless-framework"
+              },
+              "backend": {
+                "path": "services/backend",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "web": {
+                "path": "services/web",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+    "serviceConfigFileName": "serverless-compose.yml",
+    "service": {
+      "org": "eliunosquare",
+      "stages": {
+        "default": {
+          "params": {
+            "domain": "stage.eli.dev.api.bible"
+          }
+        },
+        "preview": {
+          "params": {
+            "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+          }
+        },
+        "prod": {
+          "params": null
+        }
+      },
+      "services": {
+        "shared": {
+          "path": "services/shared",
+          "component": "serverless-framework"
+        },
+        "backend": {
+          "path": "services/backend",
+          "dependsOn": [
+            "shared"
+          ],
+          "params": {
+            "apiKeyTableName": "<REDACTED>"
+          },
+          "component": "serverless-framework",
+          "parsedParams": {
+            "apiKeyTableName": "<REDACTED>"
+          }
+        },
+        "web": {
+          "path": "services/web",
+          "dependsOn": [
+            "shared"
+          ],
+          "params": {
+            "apiKeyTableName": "<REDACTED>"
+          },
+          "component": "serverless-framework",
+          "parsedParams": {
+            "apiKeyTableName": "<REDACTED>"
+          }
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eliunosquare\n\nstages:\n  default:\n    params:\n      domain: stage.${env:API_BIBLE_DOMAIN} # This is the value of the \"domain\" param in the dev stage\n  preview:\n    params:\n      domain: ${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN} # This is the value of the \"domain\" param in the dev stage\n  prod:\n    params:\n      # domain: \"prod-api.acmeinc.com\" # This is the value of the \"domain\" param in the prod stage\n\nservices:\n  shared:\n    path: services/shared\n  backend:\n    path: services/backend\n    dependsOn:\n      - shared\n    params:\n      apiKeyTableName: ${shared.apiKeyTableName}\n  web:\n    path: services/web\n    dependsOn:\n      - shared\n    params:\n      apiKeyTableName: ${shared.apiKeyTableName}\n  # portal:\n  #   path: services/portal\n  #   dependsOn:\n  #     - shared\n  #   params:\n  #     apiKeyTableName: ${shared.apiKeyTableName}",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "params": {
+      "domain": "stage.eli.dev.api.bible"
+    },
+    "machineId": "16b41e4da0df86ae0f600c8ad7ea19a1",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "e2b51451-1a60-46e3-8a0b-fc488fa4cea5",
+    "orgName": "eliunosquare",
+    "userId": "XjrSfknmQlkKg6MQfr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "eliunosquare",
+    "subscription": null,
+    "userEmail": "eli.marshall@unosquare.com",
+    "projectType": "compose",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  },
+  "/Users/eli.marshall/code/serverless-turborepo-spike/services/shared": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": true,
+    "isCompose": false,
+    "composeOrgName": "eliunosquare",
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "stages": {
+              "default": {
+                "params": {
+                  "domain": "stage.eli.dev.api.bible"
+                }
+              },
+              "preview": {
+                "params": {
+                  "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+                }
+              },
+              "prod": {
+                "params": null
+              }
+            },
+            "services": {
+              "shared": {
+                "path": "services/shared",
+                "component": "serverless-framework"
+              },
+              "backend": {
+                "path": "services/backend",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "web": {
+                "path": "services/web",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      },
+      "sls": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "service": "shared",
+            "provider": {
+              "name": "aws",
+              "stage": "dev",
+              "region": "us-east-1",
+              "versionFunctions": true,
+              "compiledCloudFormationTemplate": {
+                "AWSTemplateFormatVersion": "2010-09-09",
+                "Description": "The AWS CloudFormation template for this Serverless application",
+                "Resources": {
+                  "apiKeyTable": "<REDACTED>"
+                },
+                "Outputs": {
+                  "ServerlessDeploymentBucketName": {
+                    "Value": "serverless-framework-deployments-us-east-1-760f9696-be60",
+                    "Export": {
+                      "Name": "sls-shared-dev-ServerlessDeploymentBucketName"
+                    }
+                  },
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            },
+            "resources": {
+              "Resources": {
+                "apiKeyTable": "<REDACTED>"
+              },
+              "Outputs": {
+                "apiKeyTableName": "<REDACTED>"
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike/services/shared",
+          "config": {
+            "type": "sls"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "composeParams": {
+            "domain": "stage.eli.dev.api.bible"
+          },
+          "logger": {
+            "namespace": "s:core:resolver:sls",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": "shared",
+    "composeServiceParams": {},
+    "servicePath": "/Users/eli.marshall/code/serverless-turborepo-spike/services/shared",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "eliunosquare",
+      "service": "shared",
+      "provider": {
+        "name": "aws",
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {
+            "apiKeyTable": "<REDACTED>"
+          },
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-760f9696-be60",
+              "Export": {
+                "Name": "sls-shared-dev-ServerlessDeploymentBucketName"
+              }
+            },
+            "apiKeyTableName": "<REDACTED>"
+          }
+        }
+      },
+      "resources": {
+        "Resources": {
+          "apiKeyTable": "<REDACTED>"
+        },
+        "Outputs": {
+          "apiKeyTableName": "<REDACTED>"
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eliunosquare\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: shared\n\nprovider:\n  name: aws\n\nresources:\n  Resources:\n    apiKeyTable:\n      Type: AWS::DynamoDB::Table\n      Properties:\n        TableName: apiKeyTable-${sls:stage}\n        AttributeDefinitions:\n          - AttributeName: apiKey\n            AttributeType: S\n        KeySchema:\n          - AttributeName: apiKey\n            KeyType: HASH\n        ProvisionedThroughput:\n          ReadCapacityUnits: 1000\n          WriteCapacityUnits: 1000\n    # TODO: ADD Cognito\n    \n    # TODO: ADD RDS\n\n  Outputs:\n    apiKeyTableName:\n      Value: !Ref apiKeyTable",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": null,
+    "params": {},
+    "machineId": "16b41e4da0df86ae0f600c8ad7ea19a1",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "e2b51451-1a60-46e3-8a0b-fc488fa4cea5",
+    "orgName": "eliunosquare",
+    "userId": "XjrSfknmQlkKg6MQfr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "eliunosquare",
+    "subscription": null,
+    "userEmail": "eli.marshall@unosquare.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "883360510926",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "shared-dev",
+    "integrations": {},
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:883360510926:stack/shared-dev/f6610f50-79f1-11ef-bc4e-1217611dfdad",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:883360510926:stack/shared-dev/f6610f50-79f1-11ef-bc4e-1217611dfdad",
+    "serviceProviderAwsCfStackCreated": "2024-09-23T21:22:40.065Z",
+    "serviceProviderAwsCfStackUpdated": "2024-09-23T21:37:50.036Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "apiKeyTableName",
+        "OutputValue": "apiKeyTable-dev"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-760f9696-be60",
+        "ExportName": "sls-shared-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  },
+  "/Users/eli.marshall/code/serverless-turborepo-spike/services/portal": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": true,
+    "isCompose": false,
+    "composeOrgName": "eliunosquare",
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "stages": {
+              "default": {
+                "params": {
+                  "domain": "stage.eli.dev.api.bible"
+                }
+              },
+              "preview": {
+                "params": {
+                  "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+                }
+              },
+              "prod": {
+                "params": null
+              }
+            },
+            "services": {
+              "shared": {
+                "path": "services/shared",
+                "component": "serverless-framework"
+              },
+              "backend": {
+                "path": "services/backend",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "web": {
+                "path": "services/web",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "portal": {
+                "path": "services/portal",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": "portal",
+    "composeServiceParams": {
+      "apiKeyTableName": "<REDACTED>"
+    },
+    "servicePath": "/Users/eli.marshall/code/serverless-turborepo-spike/services/portal",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "eliunosquare",
+      "service": "portal",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {},
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-760f9696-be60",
+              "Export": {
+                "Name": "sls-portal-dev-ServerlessDeploymentBucketName"
+              }
+            }
+          }
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eliunosquare\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: portal\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n\n# functions:\n#   hello:\n#     handler: handler.hello\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": {
+      "message": "The CloudFormation template is invalid: Template format error: At least one Resources member must be defined.",
+      "stack": "ServerlessError2: The CloudFormation template is invalid: Template format error: At least one Resources member must be defined.\n    at file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:714:21614\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async aws:deploy:deploy:validateTemplate (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:725:5164)\n    at async PluginManager.runHooks (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:9311)\n    at async PluginManager.invoke (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:10082)\n    at async PluginManager.spawn (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:10443)\n    at async PluginManager.runHooks (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:9311)\n    at async PluginManager.invoke (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:10082)\n    at async PluginManager.run (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:912:10813)\n    at async Serverless.run (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:919:10612)",
+      "code": "INVALID_AWS_CLOUDFORMATION_TEMPLATE"
+    },
+    "params": {},
+    "machineId": "16b41e4da0df86ae0f600c8ad7ea19a1",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "e2b51451-1a60-46e3-8a0b-fc488fa4cea5",
+    "orgName": "eliunosquare",
+    "userId": "XjrSfknmQlkKg6MQfr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "eliunosquare",
+    "subscription": null,
+    "userEmail": "eli.marshall@unosquare.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "883360510926",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "portal-dev",
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:883360510926:stack/portal-dev/b9e4f090-79f2-11ef-9f0d-0afffb61e9db",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:883360510926:stack/portal-dev/b9e4f090-79f2-11ef-9f0d-0afffb61e9db",
+    "serviceProviderAwsCfStackCreated": "2024-09-23T21:28:08.078Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:883360510926:function:portal-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-portal-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-760f9696-be60",
+        "ExportName": "sls-portal-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  },
+  "/Users/eli.marshall/code/serverless-turborepo-spike/services/backend": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": true,
+    "isCompose": false,
+    "composeOrgName": "eliunosquare",
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "stages": {
+              "default": {
+                "params": {
+                  "domain": "stage.eli.dev.api.bible"
+                }
+              },
+              "preview": {
+                "params": {
+                  "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+                }
+              },
+              "prod": {
+                "params": null
+              }
+            },
+            "services": {
+              "shared": {
+                "path": "services/shared",
+                "component": "serverless-framework"
+              },
+              "backend": {
+                "path": "services/backend",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "web": {
+                "path": "services/web",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": "backend",
+    "composeServiceParams": {
+      "apiKeyTableName": "<REDACTED>"
+    },
+    "servicePath": "/Users/eli.marshall/code/serverless-turborepo-spike/services/backend",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "eliunosquare",
+      "service": "backend",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {
+            "HelloLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/backend-dev-hello"
+              }
+            },
+            "IamRoleLambdaExecution": {
+              "Type": "AWS::IAM::Role",
+              "Properties": {
+                "AssumeRolePolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Principal": {
+                        "Service": [
+                          "lambda.amazonaws.com"
+                        ]
+                      },
+                      "Action": [
+                        "sts:AssumeRole"
+                      ]
+                    }
+                  ]
+                },
+                "Policies": [
+                  {
+                    "PolicyName": {
+                      "Fn::Join": [
+                        "-",
+                        [
+                          "backend",
+                          "dev",
+                          "lambda"
+                        ]
+                      ]
+                    },
+                    "PolicyDocument": {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:CreateLogStream",
+                            "logs:CreateLogGroup",
+                            "logs:TagResource"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/backend-dev*:*"
+                            }
+                          ]
+                        },
+                        {
+                          "Effect": "Allow",
+                          "Action": [
+                            "logs:PutLogEvents"
+                          ],
+                          "Resource": [
+                            {
+                              "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/backend-dev*:*:*"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "Path": "/",
+                "RoleName": {
+                  "Fn::Join": [
+                    "-",
+                    [
+                      "backend",
+                      "dev",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      "lambdaRole"
+                    ]
+                  ]
+                }
+              }
+            },
+            "HelloLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
+              "Properties": {
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-us-east-1-760f9696-be60",
+                  "S3Key": "serverless/backend/dev/1727193361333-2024-09-24T15:56:01.333Z/backend.zip"
+                },
+                "Handler": "handler.hello",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "backend-dev-hello",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "HelloLogGroup"
+              ]
+            },
+            "HelloLambdaVersionC54xajP9cqv0Xqjo9ZjA4JZVtXQjLQXbWoL1sj4wU": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "HelloLambdaFunction"
+                },
+                "CodeSha256": "DMrJRsc0Ybmqnsls3oGOt0ZXRgoIqOK+TKjLVAtYq3Y="
+              }
+            }
+          },
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-760f9696-be60",
+              "Export": {
+                "Name": "sls-backend-dev-ServerlessDeploymentBucketName"
+              }
+            },
+            "HelloLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "HelloLambdaVersionC54xajP9cqv0Xqjo9ZjA4JZVtXQjLQXbWoL1sj4wU"
+              },
+              "Export": {
+                "Name": "sls-backend-dev-HelloLambdaFunctionQualifiedArn"
+              }
+            }
+          }
+        },
+        "vpc": {}
+      },
+      "functions": {
+        "hello": {
+          "handler": "handler.hello",
+          "events": [],
+          "name": "backend-dev-hello",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "HelloLambdaVersionC54xajP9cqv0Xqjo9ZjA4JZVtXQjLQXbWoL1sj4wU"
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eliunosquare\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: backend\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n\nfunctions:\n  hello:\n    handler: handler.hello\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": null,
+    "params": {},
+    "machineId": "16b41e4da0df86ae0f600c8ad7ea19a1",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "e2b51451-1a60-46e3-8a0b-fc488fa4cea5",
+    "orgName": "eliunosquare",
+    "userId": "XjrSfknmQlkKg6MQfr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "eliunosquare",
+    "subscription": null,
+    "userEmail": "eli.marshall@unosquare.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "883360510926",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "backend-dev",
+    "integrations": {},
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:883360510926:stack/backend-dev/b9c867e0-79f2-11ef-8095-125fd6546fb9",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:883360510926:stack/backend-dev/b9c867e0-79f2-11ef-8095-125fd6546fb9",
+    "serviceProviderAwsCfStackCreated": "2024-09-23T21:28:07.905Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:883360510926:function:backend-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-backend-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-760f9696-be60",
+        "ExportName": "sls-backend-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  },
+  "/Users/eli.marshall/code/serverless-turborepo-spike/services/web": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": true,
+    "isCompose": false,
+    "composeOrgName": "eliunosquare",
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "eliunosquare",
+            "stages": {
+              "default": {
+                "params": {
+                  "domain": "stage.eli.dev.api.bible"
+                }
+              },
+              "preview": {
+                "params": {
+                  "domain": "${env:DEPLOY_ENV}.${env:API_BIBLE_DOMAIN}"
+                }
+              },
+              "prod": {
+                "params": null
+              }
+            },
+            "services": {
+              "shared": {
+                "path": "services/shared",
+                "component": "serverless-framework"
+              },
+              "backend": {
+                "path": "services/backend",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              },
+              "web": {
+                "path": "services/web",
+                "dependsOn": [
+                  "shared"
+                ],
+                "params": {
+                  "apiKeyTableName": "<REDACTED>"
+                },
+                "component": "serverless-framework",
+                "parsedParams": {
+                  "apiKeyTableName": "<REDACTED>"
+                }
+              }
+            }
+          },
+          "configFileDirPath": "/Users/eli.marshall/code/serverless-turborepo-spike",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": "web",
+    "composeServiceParams": {
+      "apiKeyTableName": "<REDACTED>"
+    },
+    "servicePath": "/Users/eli.marshall/code/serverless-turborepo-spike/services/web",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "eliunosquare",
+      "service": "web",
+      "plugins": [
+        "serverless-fargate"
+      ],
+      "provider": {
+        "name": "aws",
+        "region": "us-east-1",
+        "iamManagedPolicies": [
+          "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        ],
+        "ecr": {
+          "images": {
+            "web": {
+              "path": "../../.",
+              "file": "services/web/Dockerfile"
+            }
+          }
+        },
+        "stage": "dev",
+        "versionFunctions": true,
+        "compiledCloudFormationTemplate": {
+          "AWSTemplateFormatVersion": "2010-09-09",
+          "Description": "The AWS CloudFormation template for this Serverless application",
+          "Resources": {},
+          "Outputs": {
+            "ServerlessDeploymentBucketName": {
+              "Value": "serverless-framework-deployments-us-east-1-760f9696-be60"
+            }
+          }
+        }
+      },
+      "fargate": {
+        "tasks": {
+          "service-task-web": {
+            "image": "web"
+          }
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eliunosquare\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: web\n\nplugins:\n  - serverless-fargate\n\nprovider:\n  name: aws\n  region: us-east-1\n  iamManagedPolicies:\n    - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess\n  ecr:\n    images:\n      web:\n        path: ../../.\n        file: services/web/Dockerfile\n\nfargate:\n  # vpc:\n  #   securityGroupIds:\n  #     - sg-1234\n  #   subnetIds:\n  #     - subnet-1234\n  tasks:\n    service-task-web:\n      image: web\n    # service-task-1:\n    #   image: python\n    #   service:\n    #     desiredCount: 2\n    #     spot: true\n    #   tags:\n    #     service: tag\n    # scheduled-task-1:\n    #   image: php\n    #   schedule: 'rate(1 minute)'\n    #   command:\n    #     - /app/service.php\n    #     - my-scheduled-task\n    #     - 1\n",
+    "command": [
+      "deploy"
+    ],
+    "options": {},
+    "error": {
+      "message": "Encountered error during executing: docker build -t serverless-web-dev:web -f /Users/eli.marshall/code/serverless-turborepo-spike/services/web/Dockerfile ../../.\nOutput of the command:\n#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load .dockerignore\n#1 transferring context: 2B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 2.60kB done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:20-alpine\n#3 DONE 1.1s\n\n#4 [packages 1/6] FROM docker.io/library/node:20-alpine@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 197B done\n#5 ERROR: error from sender: open ../../.Trash: operation not permitted\n------\n > [internal] load build context:\n------\nERROR: failed to solve: error from sender: open ../../.Trash: operation not permitted\n",
+      "stack": "ServerlessError2: Encountered error during executing: docker build -t serverless-web-dev:web -f /Users/eli.marshall/code/serverless-turborepo-spike/services/web/Dockerfile ../../.\nOutput of the command:\n#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load .dockerignore\n#1 transferring context: 2B done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 2.60kB done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:20-alpine\n#3 DONE 1.1s\n\n#4 [packages 1/6] FROM docker.io/library/node:20-alpine@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 197B done\n#5 ERROR: error from sender: open ../../.Trash: operation not permitted\n------\n > [internal] load build context:\n------\nERROR: failed to solve: error from sender: open ../../.Trash: operation not permitted\n\n    at Object.defineProperties.resolveImageUriAndShaFromPath.promise (file:///Users/eli.marshall/.serverless/releases/4.4.0/package/dist/sf-core.js:705:2148)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+      "code": "DOCKER_BUILD_ERROR"
+    },
+    "params": {},
+    "machineId": "16b41e4da0df86ae0f600c8ad7ea19a1",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "e2b51451-1a60-46e3-8a0b-fc488fa4cea5",
+    "orgName": "eliunosquare",
+    "userId": "XjrSfknmQlkKg6MQfr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "eliunosquare",
+    "subscription": null,
+    "userEmail": "eli.marshall@unosquare.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "883360510926",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "web-dev",
+    "serviceUniqueId": null,
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:883360510926:stack/portal-dev/b9e4f090-79f2-11ef-9f0d-0afffb61e9db",
+    "serviceProviderAwsCfStackCreated": "2024-09-23T21:28:08.078Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:883360510926:function:portal-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-portal-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-760f9696-be60",
+        "ExportName": "sls-portal-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: eliunosquare
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: web
+
+plugins:
+  - serverless-fargate
+
+provider:
+  name: aws
+  region: us-east-1
+  iamManagedPolicies:
+    - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+  ecr:
+    images:
+      web:
+        path: ./
+        # file: services/web/Dockerfile
+        file: Dockerfile
+
+fargate:
+  vpc:
+    securityGroupIds:
+      - sg-0500e71bd30b28c9d
+    subnetIds:
+      - subnet-010585afa930f31b0
+      - subnet-0c3d6967a67162aa5
+      - subnet-0d68f3760ca7a684e
+      - subnet-0e6b0fb3905716302
+      - subnet-0f14c5dccb640d352
+      - subnet-0ff97f73f0d0ec204
+
+  tasks:
+    service-task-web:
+      image: web
+    # service-task-1:
+    #   image: python
+    #   service:
+    #     desiredCount: 2
+    #     spot: true
+    #   tags:
+    #     service: tag
+    # scheduled-task-1:
+    #   image: php
+    #   schedule: 'rate(1 minute)'
+    #   command:
+    #     - /app/service.php
+    #     - my-scheduled-task
+    #     - 1
